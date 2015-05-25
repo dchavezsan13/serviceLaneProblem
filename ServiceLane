@@ -1,0 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+/**
+ *
+ * @author daniChavez
+ */
+public class ServiceLane {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+
+        Scanner miScan = new Scanner(System.in);
+        String firstLine = miScan.nextLine();
+        StringTokenizer myTokens = new StringTokenizer(firstLine);
+        int lengthFreeway = Integer.parseInt(myTokens.nextToken());
+        int testCases = Integer.parseInt(myTokens.nextToken());
+
+        firstLine = miScan.nextLine();
+        int[] widthLanes = new int[lengthFreeway];
+        myTokens = new StringTokenizer(firstLine);
+        for (int i = 0; i < widthLanes.length; i++) {
+            widthLanes[i] = Integer.parseInt(myTokens.nextToken());
+        }
+
+        int[] arrayResults = new int[testCases];
+
+        for (int j = 0; j < testCases; j++) {
+            firstLine = miScan.nextLine();
+            myTokens = new StringTokenizer(firstLine);
+            arrayResults[j] = getSmaller(widthLanes, Integer.parseInt(myTokens.nextToken()), Integer.parseInt(myTokens.nextToken()));
+        }
+        
+        for (int k = 0; k < arrayResults.length; k++) {
+            System.out.println(arrayResults[k]);
+        }
+
+    }
+
+    public static int getSmaller(int[] array, int indexBegin, int indexEnd) {
+        int smaller = array[indexBegin];
+        int indexStart = array[indexBegin];
+        for (int i = indexBegin; i <= indexEnd; i++) {
+            if (smaller > array[i]) {
+                smaller = array[i];
+            }
+        }
+        return smaller;
+    }
+
+}
